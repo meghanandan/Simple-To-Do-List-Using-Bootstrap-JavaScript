@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <style>
+        body { background-color: #f4f4f4;}
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+        }
+    </style>
+    <title>To-Do List</title>
+</head>
+<body>
+    <div class="container">
+        <div class="bg-white p-4 shadow">
+            <h1 class="text-center fs-2">To-Do List</h1>
+            <div class="input-group">
+                <input type="text" id="taskInput" class="form-control" placeholder="Add a new task">
+                <button class="btn btn-primary" onclick="addTask()">Add</button>
+            </div>
+            <ul class="list-group mt-2" id="taskList"></ul>
+        </div>
+        <div class="text-center text-muted"><small>A Simple Bootstrap, JavaScript, To-Do List <br/> -By Meghanandan JB</small></div>
+    </div>
+<script>
+    // create a function to start adding tasks
+    function addTask() {
+        var taskInput = document.getElementById("taskInput"); // For task entries
+        var taskList = document.getElementById("taskList"); // For listing tasks
+
+        // To check if user entered any task entries
+        if (taskInput.value === "") {
+            alert("Please enter a task!");
+            return;
+        }
+
+        var li = document.createElement("li");
+        li.className = "list-group-item d-flex justify-content-between align-items-start";
+        var span = document.createElement("span"); 
+        span.className = "mt-1";
+        var deleteButton = document.createElement("button"); // A button to delete created task
+
+        span.textContent = taskInput.value; // Assigning the entered task in a span tag
+        deleteButton.textContent = "Delete"; // Labeling the delete button
+        deleteButton.className = "btn btn-danger btn-sm"; // A class name for the delete button
+
+        // A function for user to delete specific task
+        deleteButton.onclick = function () {
+            taskList.removeChild(li);
+        };
+
+        li.appendChild(span);
+        li.appendChild(deleteButton);
+        taskList.appendChild(li);
+
+        taskInput.value = "";
+
+    }        
+</script>
+</body>
+</html>
